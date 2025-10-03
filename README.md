@@ -1,4 +1,5 @@
 📊 SaaS Funnel Analytics Project
+
 🔹 Overview
 
 This project simulates a FinTech SaaS user funnel and analyzes stage-wise drop-offs using:
@@ -24,19 +25,19 @@ File: data/Funnel_Logs.csv
 🔹 SQL Logic
 1. Create Table
 
-sql/create_table.sql
+  sql/create_table.sql
 
 <img width="829" height="219" alt="image" src="https://github.com/user-attachments/assets/1a27386b-9a31-40b1-a7e5-844a33537144" />
 
 2. Map Funnel Stages
 
-sql/stage_mapping.sql
+  sql/stage_mapping.sql
 
 Maps raw status codes into StageLevels (Created=0, Interacted=1, Completed=7, etc.).
 
 3. Funnel KPIs
 
-sql/funnel_mapping.sql
+  sql/funnel_mapping.sql
 
 Computes:
 
@@ -52,7 +53,7 @@ Pullthrough Rate = Completed ÷ Created
 
 4. Power BI Query
 
-sql/powerbi_query.sql
+  sql/powerbi_query.sql
 
 Outputs stage counts, ready for Power BI funnel charts.
 
@@ -64,25 +65,39 @@ KPI cards for Activation, Completion, and Pullthrough rates
 
 Time-series of completions by month
 
-
-
-
-
-
-
-
-
-
+<img width="1396" height="786" alt="image" src="https://github.com/user-attachments/assets/66d5a9cf-5467-4d87-85a8-4386330aaf12" />
 
 🔹 Business Insights
 
-~50% of orders activate after signup → onboarding works well.
+Severe Funnel Drop-off:
 
-Only ~33% of login attempts succeed → major friction at login.
+Out of 5000 created orders, only 2 reached completion.
 
-Completion is <1% → MFA and VOIE are strong bottlenecks.
+That’s a completion rate of just 0.04%, highlighting a critical leakage.
 
-Recommendation: simplify login/MFA, improve UX in verification flow to reduce drop-offs.
+High Early Engagement, Poor Conversion:
+
+2484 users interacted, meaning almost 50% engagement rate.
+
+But only 411 attempted login (~16%), showing a big gap between interest and action.
+
+Authentication Bottleneck:
+
+135 successful logins out of 411 attempts → 32.85% login success rate.
+
+Suggests users are struggling at the login stage (bad UX, errors, or mistrust).
+
+MFA Stage is a Major Barrier:
+
+Only 74 users reached MFA out of 135 logins → ~55% drop-off.
+
+Security is important, but this friction is killing conversions.
+
+Pull-through Rate is Critically Low:
+
+Only 0.08% of users who interacted completed the funnel.
+
+Indicates urgent need for product and onboarding optimization.
 
 
 🔹 How to Run Locally
